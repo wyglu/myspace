@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My kLAW ❤️</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ÉCRAN DE CONNEXION -->
+    <div id="login-screen" class="login-screen">
+        <div class="login-container">
+            <div class="login-header">
+                <span class="login-emoji">📖</span>
+                <h2>Mon Journal Secret</h2>
+                <p>Entre le mot de passe pour continuer</p>
+            </div>
+            
+            <div class="login-form">
+                <input type="password" id="password-input" placeholder="🔐 Mot de passe" autocomplete="off">
+                <button id="login-btn">Ouvrir mon journal ✨</button>
+                <p id="login-error" class="login-error"></p>
+            </div>
+            
+            <div class="login-hint">
+                <p>💡 Indice : celui que tu aimes</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- OVERLAY GRISÉ -->
+    <div id="content-overlay" class="content-overlay"></div>
+
+    <!-- CONTENU PRINCIPAL -->
+    <div class="container" id="main-content">
+        
+        <!-- EN-TÊTE -->
+        <header class="header">
+            <h1>📖 My love story with <span id="prenom">kLAW</span></h1>
+            <p class="sous-titre">J'ai fini par trouver mon âme sœur...</p>
+        </header>
+
+        <!-- SECTION PROFIL (avec bouton ajouter) -->
+        <section class="section profil">
+            <h2>🌸 Son portrait</h2>
+            <div class="profil-content">
+                <div class="photo-container">
+                    <img id="photo-profil" src="" alt="Photo de mon chéri" class="photo-profil">
+                    <div class="photo-overlay">
+                        <label for="upload-photo" class="btn-photo">📸 Changer</label>
+                    </div>
+                </div>
+                <input type="file" id="upload-photo" accept="image/*" style="display: none;">
+                
+                <div class="infos" id="infos-container">
+                    <p><strong>Le surnom que je lui donne :</strong> <span id="surnom">kLAW</span></p>
+                    <p><strong>Date d'anniversaire :</strong> <span id="anniversaire">14/05/2006</span></p>
+                    <p><strong>Plat préféré :</strong> <span id="plat">Cotis fumé</span></p>
+                    <p><strong>Couleur préférée :</strong> <span id="couleur">Noir/Rouge</span></p>
+                    <p><strong>Verset préféré :</strong> <span id="verset">Jean 16:32-33</span></p>
+                    
+                    <!-- Conteneur pour les champs personnalisés -->
+                    <div id="champs-personnalises"></div>
+                    
+                    <!-- Bouton pour ajouter un champ -->
+                    <button id="btn-ajouter-champ" class="btn-ajouter-champ">➕ Ajouter une info</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION CE QU'IL AIME / N'AIME PAS -->
+        <section class="section aime-pas-aime">
+            <h2>⚖️ Ce qu'il aime / n'aime pas</h2>
+            
+            <div class="double-liste-container">
+                <!-- Colonne CE QU'IL AIME -->
+                <div class="liste-colonne aime">
+                    <div class="colonne-header">
+                        <span class="colonne-emoji">❤️</span>
+                        <h3>Il aime</h3>
+                    </div>
+                    
+                    <div class="ajout-colonne">
+                        <input type="text" id="nouveau-aime" placeholder="Ajouter ce qu'il aime...">
+                        <button id="btn-ajouter-aime" class="btn-petit">➕</button>
+                    </div>
+                    
+                    <ul id="liste-aime" class="liste-aime"></ul>
+                </div>
+                
+                <!-- Barre de séparation -->
+                <div class="separateur">
+                    <span class="separateur-emoji">⚖️</span>
+                </div>
+                
+                <!-- Colonne CE QU'IL N'AIME PAS -->
+                <div class="liste-colonne n-aime-pas">
+                    <div class="colonne-header">
+                        <span class="colonne-emoji">🖤</span>
+                        <h3>Il n'aime pas</h3>
+                    </div>
+                    
+                    <div class="ajout-colonne">
+                        <input type="text" id="nouveau-naime" placeholder="Ajouter ce qu'il n'aime pas...">
+                        <button id="btn-ajouter-naime" class="btn-petit">➕</button>
+                    </div>
+                    
+                    <ul id="liste-naime" class="liste-naime"></ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION TIMELINE DES SOUVENIRS -->
+        <section class="section timeline">
+            <h2>📝 Événements entre nous qui m'ont marquée</h2>
+            
+            <div class="ajout-souvenir">
+                <input type="text" id="nouveau-souvenir" placeholder="Ajouter un souvenir...">
+                <input type="date" id="date-souvenir" class="date-input">
+                <button id="btn-ajouter">Ajouter ➕</button>
+            </div>
+            
+            <div class="timeline-container">
+                <div id="timeline-items"></div>
+            </div>
+        </section>
+
+        <!-- SECTION IDÉES CADEAUX -->
+        <section class="section cadeaux">
+            <h2>🎁 Idées cadeaux (secret !)</h2>
+            <p class="secret-note">💭 Petit pense-bête pour lui faire plaisir</p>
+            
+            <div class="ajout-cadeau">
+                <input type="text" id="nouveau-cadeau" placeholder="Ajouter une idée cadeau...">
+                <button id="btn-ajouter-cadeau">Ajouter ➕</button>
+            </div>
+            
+            <ul id="liste-cadeaux"></ul>
+        </section>
+
+        <!-- SECTION MESSAGES LIBRES (NOUVEAU) -->
+        <section class="section messages-libres">
+            <h2>💌 Ce que je pense</h2>
+            <p class="messages-subtitle">Mes pensées, mes mots, mon cœur...</p>
+            
+            <div class="message-composer">
+                <div class="emoji-picker" id="emoji-picker">
+                    <span class="emoji-btn" data-emoji="❤️">❤️</span>
+                    <span class="emoji-btn" data-emoji="😊">😊</span>
+                    <span class="emoji-btn" data-emoji="😘">😘</span>
+                    <span class="emoji-btn" data-emoji="🥰">🥰</span>
+                    <span class="emoji-btn" data-emoji="💕">💕</span>
+                    <span class="emoji-btn" data-emoji="✨">✨</span>
+                    <span class="emoji-btn" data-emoji="🌟">🌟</span>
+                    <span class="emoji-btn" data-emoji="🦋">🦋</span>
+                    <span class="emoji-btn" data-emoji="🌙">🌙</span>
+                    <span class="emoji-btn" data-emoji="☀️">☀️</span>
+                    <span class="emoji-btn" data-emoji="🌈">🌈</span>
+                    <span class="emoji-btn" data-emoji="🕊️">🕊️</span>
+                    <span class="emoji-btn" data-emoji="😂">😂</span>
+                    <span class="emoji-btn" data-emoji="🤣">🤣</span>
+                    <span class="emoji-btn" data-emoji="😅">😅</span>
+                    <span class="emoji-btn" data-emoji="😁">😁</span>
+        
+                </div>
+                
+                <textarea id="nouveau-message" placeholder="Écris ce que tu ressens... (pas de limite, laisse parler ton cœur)"></textarea>
+                
+                <div class="message-actions">
+                    <button id="btn-ajouter-message" class="btn-message">Publier ma pensée 💫</button>
+                </div>
+            </div>
+            
+            <div class="messages-container" id="messages-container"></div>
+        </section>
+
+        <!-- PIED DE PAGE -->
+        <footer>
+            <p>Fait avec ❤️ pour kLAW</p>
+            <button id="logout-btn" class="logout-btn">🔒 Verrouiller</button>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
